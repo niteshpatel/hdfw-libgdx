@@ -1,13 +1,16 @@
 package com.herodevelop.hdlibgdx;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GLCommon;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.herodevelop.hdlibgdx.assets.Font;
-import com.herodevelop.hdlibgdx.assets.Image;
+import com.herodevelop.hdlibgdx.Files.File;
 
 public class Graphics {
 
@@ -92,5 +95,30 @@ public class Graphics {
         GLCommon gl = Gdx.gl;
         gl.glClearColor(0, 0, 0, 1);
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+    }
+
+    public static class Image extends TextureRegion {
+        public Image(Texture texture) {
+            super(texture);
+        }
+
+        public Image(File f) {
+            this(new Texture(f));
+        }
+
+        public Image(String s) {
+            this(new Texture(Gdx.files.internal(s)));
+        }
+    }
+
+    public static class Font extends BitmapFont {
+
+        public Font(FileHandle f, boolean b) {
+            super(f, b);
+        }
+
+        public Font(String s, boolean b) {
+            this(Gdx.files.internal(s), b);
+        }
     }
 }
