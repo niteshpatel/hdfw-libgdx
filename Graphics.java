@@ -112,7 +112,6 @@ public class Graphics {
     }
 
     public static class Font extends BitmapFont {
-
         public Font(FileHandle f, boolean b) {
             super(f, b);
         }
