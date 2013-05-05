@@ -1,4 +1,4 @@
-package com.herodevelop.hdlibgdx;
+package com.herodevelop.hdlib;
 
 import com.badlogic.gdx.Gdx;
 
