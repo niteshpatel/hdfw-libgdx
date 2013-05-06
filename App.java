@@ -5,8 +5,8 @@ import com.badlogic.gdx.Preferences;
 
 
 public class App {
-    String tag;
-    Preferences prefs;
+    private final String tag;
+    private final Preferences prefs;
 
     public App(String tag) {
         this.prefs = Gdx.app.getPreferences(tag);
