@@ -23,7 +23,7 @@ public class Graphics {
     }
 
     /* from http://rotatingcanvas.com/game-development-in-android-using-libgdx-part-iii-2/ */
-    public static OrthographicCamera GetCamera(float virtualWidth, float virtualHeight) {
+    private static OrthographicCamera GetCamera(float virtualWidth, float virtualHeight) {
         float viewportWidth;
         float viewportHeight;
         float physicalWidth = Gdx.graphics.getWidth();
