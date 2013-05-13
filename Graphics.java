@@ -11,15 +11,21 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Matrix4;
 import com.herodevelop.hdlibgdx.Files.File;
 
 public class Graphics {
 
     private final SpriteBatch spriteBatch;
+    private final ShapeRenderer shapeRenderer;
 
     public Graphics(int width, int height) {
         this.spriteBatch = new SpriteBatch();
-        this.spriteBatch.setProjectionMatrix(GetCamera(width, height).combined);
+        this.shapeRenderer = new ShapeRenderer();
+        // Resolution scaling setup
+        Matrix4 matrix4 = GetCamera(width, height).combined;
+        this.spriteBatch.setProjectionMatrix(matrix4);
+        this.shapeRenderer.setProjectionMatrix(matrix4);
     }
 
     /* from http://rotatingcanvas.com/game-development-in-android-using-libgdx-part-iii-2/ */
@@ -70,7 +76,7 @@ public class Graphics {
             float alpha) {
         // Draw an shape at x, y with given width, height, and tint
         Gdx.gl.glEnable(GL10.GL_BLEND);
-        ShapeRenderer shapeRenderer = new ShapeRenderer();
+        shapeRenderer.setProjectionMatrix(GetCamera(width, height).combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.FilledRectangle);
         shapeRenderer.setColor(red, blue, green, alpha);
         shapeRenderer.filledRect(x, y, width, height);
