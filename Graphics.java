@@ -77,7 +77,7 @@ public class Graphics {
         // Draw an shape at x, y with given width, height, and tint
         Gdx.gl.glEnable(GL10.GL_BLEND);
         shapeRenderer.begin(ShapeRenderer.ShapeType.FilledRectangle);
-        shapeRenderer.setColor(red, blue, green, alpha);
+        shapeRenderer.setColor(red, green, blue, alpha);
         shapeRenderer.filledRect(x, y, width, height);
         shapeRenderer.end();
     }
