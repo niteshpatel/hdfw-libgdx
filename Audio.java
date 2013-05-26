@@ -6,7 +6,7 @@ public class Audio {
 
     public static class Sound {
 
-        com.badlogic.gdx.audio.Sound sound;
+        final com.badlogic.gdx.audio.Sound sound;
 
         public Sound(String s) {
             this.sound = Gdx.audio.newSound(Gdx.files.internal(s));
