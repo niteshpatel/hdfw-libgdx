@@ -94,7 +94,7 @@ public class Graphics {
             float alpha) {
         // Draw an image at x, y with given scale, rotation, and tint
         spriteBatch.begin();
-        Sprite sprite = new Sprite(image);
+        Sprite sprite = new Sprite(image.textureRegion);
         sprite.setPosition(x, y);
         sprite.setScale(scale);
         sprite.setRotation(rotation);
@@ -123,7 +123,7 @@ public class Graphics {
 
     public final void drawFont(String string, Font font, float x, float y) {
         spriteBatch.begin();
-        font.draw(spriteBatch, string, x, y);
+        font.bitmapFont.draw(spriteBatch, string, x, y);
         spriteBatch.end();
     }
 
@@ -133,27 +133,47 @@ public class Graphics {
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
     }
 
-    public static class Image extends TextureRegion {
+    public static class Image {
+        TextureRegion textureRegion;
+
         public Image(Texture texture) {
-            super(texture);
+            this.textureRegion = new TextureRegion(texture);
         }
 
         public Image(File f) {
-            this(new Texture(f));
+            this(new Texture(f.fileHandle));
         }
 
         public Image(String s) {
             this(new Texture(Gdx.files.internal(s)));
         }
+
+        public int getRegionWidth() {
+            return textureRegion.getRegionWidth();
+        }
+
+        public int getRegionHeight() {
+            return textureRegion.getRegionHeight();
+        }
     }
 
-    public static class Font extends BitmapFont {
+    public static class Font {
+        BitmapFont bitmapFont;
+
         public Font(FileHandle f, boolean b) {
-            super(f, b);
+            this.bitmapFont = new BitmapFont(f, b);
         }
 
         public Font(String s, boolean b) {
             this(Gdx.files.internal(s), b);
+        }
+
+        public float getWidth(String str) {
+            return bitmapFont.getBounds(str).width;
+        }
+
+        public float getHeight(String str) {
+            return bitmapFont.getBounds(str).height;
         }
     }
 }
